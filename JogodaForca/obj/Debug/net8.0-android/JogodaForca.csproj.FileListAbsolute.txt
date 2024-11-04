@@ -1047,3 +1047,4 @@ C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-android\and
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-android\android\assets\SQLitePCLRaw.core.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-android\android\assets\SQLitePCLRaw.lib.e_sqlite3.android.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-android\android\assets\SQLitePCLRaw.provider.e_sqlite3.dll
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-android\JogodaForca.sourcelink.json

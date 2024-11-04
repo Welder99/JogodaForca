@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Microsoft.Maui.Controls;
 using Microsoft.Data.Sqlite;
 
-
 namespace JogodaForca
 {
     public partial class MainPage : ContentPage
@@ -27,24 +26,24 @@ namespace JogodaForca
         };
 
         private readonly string trophyArt = @"
-     ___________
-      '._==_==_=_.'
-        .-\:      /-.
-       | (|:.     |) |
-        '-|:.     |-'
-          \::.    /
-           '::. .'
-             ) (
-           _.' '._
-          `""""""""""` 
-
-   PARABÉNS!
- VOCÊ ACERTOU.
-    ";
+         ___________
+          '._==_==_=_.'
+            .-\:      /-.
+           | (|:.     |) |
+            '-|:.     |-'
+              \::.    /
+               '::. .'
+                 ) (
+               _.' '._
+              `""""""""""` 
+    
+       PARABÉNS!
+     VOCÊ ACERTOU.
+        ";
 
         private readonly string gameOverArt = @"
-      G A M E   O V E R
-    ";
+          G A M E   O V E R
+        ";
 
         private int player1Score;
         private int player1Errors;
@@ -68,11 +67,14 @@ namespace JogodaForca
             // Inicializa os elementos da interface
             ResetInterface();
 
+            // Inicializa o jogador atual
+            currentPlayer = 1;
+
             // Define o modo de jogo padrão como "Um Jogador"
             GameModePicker.SelectedIndex = 0;
 
-            // Inicializa o jogador atual
-            currentPlayer = 1;
+            // Adiciona o evento SelectedIndexChanged após a inicialização
+            GameModePicker.SelectedIndexChanged += OnGameModeChanged;
         }
 
         private void ResetInterface()
@@ -88,7 +90,10 @@ namespace JogodaForca
             CategoryPicker.IsVisible = true;
             CategoryPicker.IsEnabled = true;
             GameModePicker.IsEnabled = true;
+            GameModePicker.IsVisible = true; // Certifique-se de que o GameModePicker está visível
             CategoryPicker.SelectedIndex = -1;
+            NextRoundButton.IsVisible = false;
+            RestartGameButton.IsVisible = false; // Oculta o botão "Reiniciar Jogo"
         }
 
         private void OnGameModeChanged(object sender, EventArgs e)
@@ -127,7 +132,7 @@ namespace JogodaForca
                 WordEntry.Text = "";
                 WordEntry.IsVisible = false;
                 CategoryPicker.IsVisible = false;
-                GameModePicker.IsEnabled = false;
+                GameModePicker.IsEnabled = false; // Desabilita apenas durante o jogo
 
                 // Define o jogador que irá adivinhar
                 guessingPlayer = currentPlayer == 1 ? 2 : 1;
@@ -146,7 +151,7 @@ namespace JogodaForca
 
                 StartGameButton.IsVisible = false;
                 CategoryPicker.IsVisible = false;
-                GameModePicker.IsEnabled = false;
+                GameModePicker.IsEnabled = false; // Desabilita apenas durante o jogo
             }
         }
 
@@ -176,7 +181,22 @@ namespace JogodaForca
                     MessageLabel.Text = $"Jogador {guessingPlayer}: Adivinhe a palavra.";
                 }
 
-                // [Resto da implementação do InitializeGame]
+                // Inicializa as variáveis do jogo
+                guessedWord = new string('_', wordToGuess.Length).ToCharArray();
+                attemptsLeft = 6;
+                wrongGuesses = new HashSet<char>();
+
+                // Atualiza a interface
+                UpdateWordDisplay();
+                UpdateWrongGuesses();
+                UpdateHangmanDrawing();
+                CreateLetterButtons();
+
+                // Torna o layout das letras visível
+                LettersLayout.IsVisible = true;
+
+                // Atualiza a pontuação
+                ScoreLabel.Text = GetScoreText();
             }
             catch (Exception ex)
             {
@@ -294,11 +314,13 @@ namespace JogodaForca
             WordEntry.IsVisible = false;
             LettersLayout.IsVisible = false;
             NextRoundButton.IsVisible = true;
+            RestartGameButton.IsVisible = true; // Exibe o botão "Reiniciar Jogo"
         }
 
         private void OnRestartButtonClicked(object sender, EventArgs e)
         {
             NextRoundButton.IsVisible = false;
+            RestartGameButton.IsVisible = false; // Oculta o botão "Reiniciar Jogo"
 
             if (GameModePicker.SelectedIndex == 1) // Dois Jogadores
             {
@@ -319,8 +341,6 @@ namespace JogodaForca
             else // Um Jogador
             {
                 ResetInterface();
-                player1Score = 0;
-                player1Errors = 0;
                 StartGameButton.IsVisible = true;
             }
         }
@@ -359,5 +379,21 @@ namespace JogodaForca
             ScoreLabel.Text = GetScoreText();
             MessageLabel.Text = "Pontuação resetada.";
         }
+        private void OnRestartGameButtonClicked(object sender, EventArgs e)
+        {
+            // Resetar as pontuações
+            player1Score = 0;
+            player1Errors = 0;
+            player2Score = 0;
+            player2Errors = 0;
+
+            // Resetar o jogador atual
+            currentPlayer = 1;
+            guessingPlayer = 2;
+
+            // Resetar a interface
+            ResetInterface();
+        }
+
     }
 }

@@ -304,3 +304,4 @@ C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-maccatalyst
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\SQLitePCLRaw.core.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\SQLitePCLRaw.provider.e_sqlite3.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-maccatalyst\maccatalyst-x64\libe_sqlite3.dylib
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-maccatalyst\maccatalyst-x64\JogodaForca.sourcelink.json

@@ -182,3 +182,4 @@ C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-windows10.0
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\SQLitePCLRaw.core.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\SQLitePCLRaw.provider.e_sqlite3.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\e_sqlite3.dll
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\JogodaForca.sourcelink.json

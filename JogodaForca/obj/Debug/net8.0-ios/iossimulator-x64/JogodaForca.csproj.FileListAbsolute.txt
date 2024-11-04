@@ -317,3 +317,4 @@ C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimu
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\SQLitePCLRaw.core.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\SQLitePCLRaw.lib.e_sqlite3.ios.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\SQLitePCLRaw.provider.internal.dll
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\JogodaForca.sourcelink.json

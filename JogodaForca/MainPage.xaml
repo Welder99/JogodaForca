@@ -9,9 +9,9 @@
 
             <!-- Seleção do Modo de Jogo -->
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Label Text="Modo de Jogo: " VerticalOptions="Center" TextColor="#333" />
-                <Picker x:Name="GameModePicker" WidthRequest="150" SelectedIndexChanged="OnGameModeChanged" TextColor="#333">
-                    <Picker.Items>
+                <Label Text="Modo de Jogo: " VerticalOptions="Center" TextColor="#333"/>
+                <Picker x:Name="GameModePicker" WidthRequest="150" TextColor="#333" TitleColor="#333">
+                    <Picker.Items> 
                         <x:String>Um Jogador</x:String>
                         <x:String>Dois Jogadores</x:String>
                     </Picker.Items>
@@ -22,7 +22,7 @@
             <Picker x:Name="CategoryPicker" Title="Escolha uma categoria" HorizontalOptions="Center" TextColor="#333" TitleColor="#333"/>
 
             <!-- Entrada para a Palavra no modo de dois jogadores -->
-            <Entry x:Name="WordEntry" Placeholder="Jogador 1: Digite a palavra" IsVisible="False" TextColor="#333" />
+            <Entry x:Name="WordEntry" Placeholder="Jogador 1: Digite a palavra" IsVisible="False" TextColor="#333" PlaceholderColor="#333" />
 
             <Button x:Name="StartGameButton" Text="Iniciar Jogo" Clicked="OnStartGameClicked" BackgroundColor="#333" TextColor="White" />
 
@@ -47,6 +47,9 @@
 
             <!-- Botão para Resetar Pontuação -->
             <Button x:Name="ResetScoresButton" Text="Resetar Pontuação" Clicked="OnResetScoresButtonClicked" BackgroundColor="#333" TextColor="White" IsVisible="True"/>
+
+            <!-- Botão para Reiniciar o Jogo -->
+            <Button x:Name="RestartGameButton" Text="Reiniciar Jogo" Clicked="OnRestartGameButtonClicked" BackgroundColor="#333" TextColor="White" IsVisible="False"/>
 
         </StackLayout>
     </ScrollView>
