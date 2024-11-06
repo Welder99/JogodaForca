@@ -14,45 +14,97 @@ namespace JogodaForca
             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             dbPath = Path.Combine(folderPath, "hangman.db");
 
+            Console.WriteLine($"Caminho do banco de dados: {dbPath}"); // Adicionado para mostrar o caminho
+
             InitializeDatabase();
         }
 
         private void InitializeDatabase()
         {
-            if (!File.Exists(dbPath))
+            using (var connection = new SqliteConnection($"Data Source={dbPath}"))
             {
-                using (var connection = new SqliteConnection($"Data Source={dbPath}"))
+                connection.Open();
+
+                // Verifica se a tabela Categories existe
+                var checkCategoriesTableCmd = connection.CreateCommand();
+                checkCategoriesTableCmd.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name='Categories';";
+                var categoriesTableName = checkCategoriesTableCmd.ExecuteScalar();
+
+                if (categoriesTableName == null)
                 {
-                    connection.Open();
-
+                    // Cria a tabela Categories
                     string createCategoriesTable = @"
-                    CREATE TABLE IF NOT EXISTS Categories (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        Name TEXT NOT NULL UNIQUE
-                    );";
-
-                    string createWordsTable = @"
-                    CREATE TABLE IF NOT EXISTS Words (
-                        Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        CategoryId INTEGER,
-                        Word TEXT NOT NULL,
-                        FOREIGN KEY (CategoryId) REFERENCES Categories(Id)
-                    );";
-
-                    var command = connection.CreateCommand();
-                    command.CommandText = createCategoriesTable;
-                    command.ExecuteNonQuery();
-
-                    command.CommandText = createWordsTable;
-                    command.ExecuteNonQuery();
-
-                    connection.Close();
+            CREATE TABLE Categories (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                Name TEXT NOT NULL UNIQUE
+            );";
+                    var createCategoriesCmd = connection.CreateCommand();
+                    createCategoriesCmd.CommandText = createCategoriesTable;
+                    createCategoriesCmd.ExecuteNonQuery();
                 }
 
-                // Inserir categorias e palavras iniciais
-                SeedDatabase();
+                // Verifica se a tabela Words existe
+                var checkWordsTableCmd = connection.CreateCommand();
+                checkWordsTableCmd.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name='Words';";
+                var wordsTableName = checkWordsTableCmd.ExecuteScalar();
+
+                if (wordsTableName == null)
+                {
+                    // Cria a tabela Words com a coluna Difficulty
+                    string createWordsTable = @"
+            CREATE TABLE Words (
+                Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                CategoryId INTEGER,
+                Word TEXT NOT NULL,
+                Difficulty TEXT NOT NULL,
+                FOREIGN KEY (CategoryId) REFERENCES Categories(Id)
+            );";
+                    var createWordsCmd = connection.CreateCommand();
+                    createWordsCmd.CommandText = createWordsTable;
+                    createWordsCmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    // Verifica se a coluna Difficulty existe
+                    var checkColumnCmd = connection.CreateCommand();
+                    checkColumnCmd.CommandText = "PRAGMA table_info(Words);";
+                    var reader = checkColumnCmd.ExecuteReader();
+                    bool difficultyColumnExists = false;
+                    while (reader.Read())
+                    {
+                        var columnName = reader.GetString(1); // O segundo campo é o nome da coluna
+                        if (columnName == "Difficulty")
+                        {
+                            difficultyColumnExists = true;
+                            break;
+                        }
+                    }
+                    reader.Close();
+
+                    if (!difficultyColumnExists)
+                    {
+                        // Adiciona a coluna Difficulty
+                        var alterTableCmd = connection.CreateCommand();
+                        alterTableCmd.CommandText = "ALTER TABLE Words ADD COLUMN Difficulty TEXT NOT NULL DEFAULT 'Médio';";
+                        alterTableCmd.ExecuteNonQuery();
+                    }
+                }
+
+                // Verifica se a tabela Categories está vazia
+                var checkCategoriesEmptyCmd = connection.CreateCommand();
+                checkCategoriesEmptyCmd.CommandText = "SELECT COUNT(*) FROM Categories;";
+                var categoriesCount = (long)checkCategoriesEmptyCmd.ExecuteScalar();
+
+                if (categoriesCount == 0)
+                {
+                    // Popula o banco de dados
+                    SeedDatabase();
+                }
+
+                connection.Close();
             }
         }
+
 
         private void SeedDatabase()
         {
@@ -69,12 +121,12 @@ namespace JogodaForca
 
             var words = new Dictionary<string, List<string>>
             {
-                { "Animal", new List<string> { "ELEFANTE", "CANGURU", "HIPOPÓTAMO", "TARTARUGA", "RINOCERONTE", "GIRAFA", "GORILA", "ORNITORRINCO", "CROCODILO", "ESQUILO" } },
+                { "Animal", new List<string> { "GATO", "CÃO", "ELEFANTE", "CANGURU", "HIPOPOTAMO", "TARTARUGA", "RINOCERONTE", "GIRAFA", "GORILA", "ORNITORRINCO", "CROCODILO", "ESQUILO" } },
                 { "Cor", new List<string> { "VERMELHO", "AZUL", "AMARELO", "VERDE", "ROSA", "LARANJA", "ROXO", "MARROM", "PRETO", "BRANCO" } },
-                { "Carro", new List<string> { "FERRARI", "PORSCHE", "TOYOTA", "HONDA", "MERCEDES", "BMW", "CHEVROLET", "VOLKSWAGEN", "AUDI", "LAMBORGHINI" } },
-                { "Linguagem de Programação", new List<string> { "PYTHON", "JAVA", "JAVASCRIPT", "C", "RUBY", "KOTLIN", "SWIFT", "GO", "RUST", "PHP" } },
-                { "Hardware", new List<string> { "PROCESSADOR", "MEMORIA", "MONITOR", "TECLADO", "MOUSE", "PLACA", "FONTE", "SSD", "HD", "COOLER" } },
-                { "Banco de Dados", new List<string> { "MYSQL", "POSTGRESQL", "MONGODB", "ORACLE", "SQLITE", "FIREBASE", "SQLSERVER", "CASSANDRA", "REDIS", "COUCHDB" } }
+                { "Carro", new List<string> { "FIAT", "FERRARI", "PORSCHE", "TOYOTA", "HONDA", "MERCEDES", "BMW", "CHEVROLET", "VOLKSWAGEN", "AUDI", "LAMBORGHINI" } },
+                { "Linguagem de Programação", new List<string> { "C", "JAVA", "PYTHON", "JAVASCRIPT", "RUBY", "KOTLIN", "SWIFT", "GO", "RUST", "PHP" } },
+                { "Hardware", new List<string> { "CPU", "RAM", "PROCESSADOR", "MEMORIA", "MONITOR", "TECLADO", "MOUSE", "PLACA", "FONTE", "SSD", "HD", "COOLER" } },
+                { "Banco de Dados", new List<string> { "MYSQL", "SQLITE", "POSTGRESQL", "MONGODB", "ORACLE", "FIREBASE", "SQLSERVER", "CASSANDRA", "REDIS", "COUCHDB" } }
             };
 
             using (var connection = new SqliteConnection($"Data Source={dbPath}"))
@@ -100,9 +152,10 @@ namespace JogodaForca
                     foreach (var word in entry.Value)
                     {
                         var insertWordCmd = connection.CreateCommand();
-                        insertWordCmd.CommandText = "INSERT INTO Words (CategoryId, Word) VALUES ($categoryId, $word)";
+                        insertWordCmd.CommandText = "INSERT INTO Words (CategoryId, Word, Difficulty) VALUES ($categoryId, $word, $difficulty)";
                         insertWordCmd.Parameters.AddWithValue("$categoryId", categoryId);
                         insertWordCmd.Parameters.AddWithValue("$word", word);
+                        insertWordCmd.Parameters.AddWithValue("$difficulty", DetermineDifficulty(word));
                         insertWordCmd.ExecuteNonQuery();
                     }
                 }
@@ -111,6 +164,15 @@ namespace JogodaForca
             }
         }
 
+        private string DetermineDifficulty(string word)
+        {
+            if (word.Length <= 4)
+                return "Fácil";
+            else if (word.Length <= 7)
+                return "Médio";
+            else
+                return "Difícil";
+        }
 
         public List<string> GetCategories()
         {
@@ -130,7 +192,7 @@ namespace JogodaForca
             return categories;
         }
 
-        public List<string> GetWordsByCategory(string categoryName)
+        public List<string> GetWordsByCategoryAndDifficulty(string categoryName, string difficulty)
         {
             var words = new List<string>();
             using (var connection = new SqliteConnection($"Data Source={dbPath}"))
@@ -140,8 +202,9 @@ namespace JogodaForca
                 command.CommandText = @"
                 SELECT Words.Word FROM Words
                 JOIN Categories ON Words.CategoryId = Categories.Id
-                WHERE Categories.Name = $categoryName";
+                WHERE Categories.Name = $categoryName AND Words.Difficulty = $difficulty";
                 command.Parameters.AddWithValue("$categoryName", categoryName);
+                command.Parameters.AddWithValue("$difficulty", difficulty);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -185,9 +248,10 @@ namespace JogodaForca
 
                 // Inserir a palavra
                 var insertWordCmd = connection.CreateCommand();
-                insertWordCmd.CommandText = "INSERT INTO Words (CategoryId, Word) VALUES ($categoryId, $word)";
+                insertWordCmd.CommandText = "INSERT INTO Words (CategoryId, Word, Difficulty) VALUES ($categoryId, $word, $difficulty)";
                 insertWordCmd.Parameters.AddWithValue("$categoryId", categoryId);
                 insertWordCmd.Parameters.AddWithValue("$word", word);
+                insertWordCmd.Parameters.AddWithValue("$difficulty", DetermineDifficulty(word));
                 insertWordCmd.ExecuteNonQuery();
 
                 connection.Close();

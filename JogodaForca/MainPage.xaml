@@ -1,4 +1,5 @@
-﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="JogodaForca.MainPage"
              BackgroundColor="#E0E0E0">
@@ -11,9 +12,21 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label Text="Modo de Jogo: " VerticalOptions="Center" TextColor="#333"/>
                 <Picker x:Name="GameModePicker" WidthRequest="150" TextColor="#333" TitleColor="#333">
-                    <Picker.Items> 
+                    <Picker.Items>
                         <x:String>Um Jogador</x:String>
                         <x:String>Dois Jogadores</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <!-- Seleção do Nível de Dificuldade (somente para um jogador) -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" IsVisible="False" x:Name="DifficultyLayout">
+                <Label Text="Dificuldade: " VerticalOptions="Center" TextColor="#333"/>
+                <Picker x:Name="DifficultyPicker" WidthRequest="150" TextColor="#333" TitleColor="#333">
+                    <Picker.Items>
+                        <x:String>Fácil</x:String>
+                        <x:String>Médio</x:String>
+                        <x:String>Difícil</x:String>
                     </Picker.Items>
                 </Picker>
             </StackLayout>
@@ -41,6 +54,9 @@
 
             <!-- Exibição da Pontuação -->
             <Label x:Name="ScoreLabel" FontSize="18" TextColor="#333" HorizontalOptions="Center" />
+
+            <!-- Botão para Usar Dica -->
+            <Button x:Name="UseHintButton" Text="Usar Dica" Clicked="OnUseHintButtonClicked" BackgroundColor="#FFA500" TextColor="White" IsVisible="False"/>
 
             <!-- Botão para Próxima Rodada -->
             <Button x:Name="NextRoundButton" Text="Próxima Rodada" Clicked="OnRestartButtonClicked" BackgroundColor="#333" TextColor="White" IsVisible="False"/>

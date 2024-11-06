@@ -36,7 +36,7 @@ namespace JogodaForca
                  ) (
                _.' '._
               `""""""""""` 
-    
+
        PARABÉNS!
      VOCÊ ACERTOU.
         ";
@@ -64,18 +64,22 @@ namespace JogodaForca
                 CategoryPicker.Items.Add(category);
             }
 
-            // Inicializa os elementos da interface
-            ResetInterface();
-
             // Inicializa o jogador atual
             currentPlayer = 1;
+
+            // Adiciona o evento SelectedIndexChanged
+            GameModePicker.SelectedIndexChanged += OnGameModeChanged;
 
             // Define o modo de jogo padrão como "Um Jogador"
             GameModePicker.SelectedIndex = 0;
 
-            // Adiciona o evento SelectedIndexChanged após a inicialização
-            GameModePicker.SelectedIndexChanged += OnGameModeChanged;
+            // Chama o método para atualizar a interface de acordo com o modo de jogo
+            OnGameModeChanged(null, null);
+
+            // Inicializa os elementos da interface
+            ResetInterface();
         }
+
 
         private void ResetInterface()
         {
@@ -90,11 +94,18 @@ namespace JogodaForca
             CategoryPicker.IsVisible = true;
             CategoryPicker.IsEnabled = true;
             GameModePicker.IsEnabled = true;
-            GameModePicker.IsVisible = true; // Certifique-se de que o GameModePicker está visível
+            GameModePicker.IsVisible = true;
+            DifficultyLayout.IsVisible = false;
+            DifficultyPicker.SelectedIndex = -1;
             CategoryPicker.SelectedIndex = -1;
             NextRoundButton.IsVisible = false;
-            RestartGameButton.IsVisible = false; // Oculta o botão "Reiniciar Jogo"
+            RestartGameButton.IsVisible = false;
+            UseHintButton.IsVisible = false;
+
+            // Chama o método para atualizar a interface de acordo com o modo de jogo
+            OnGameModeChanged(null, null);
         }
+
 
         private void OnGameModeChanged(object sender, EventArgs e)
         {
@@ -102,13 +113,22 @@ namespace JogodaForca
             {
                 WordEntry.IsVisible = true;
                 CategoryPicker.IsEnabled = true;
+                DifficultyLayout.IsVisible = false;
             }
-            else
+            else if (GameModePicker.SelectedIndex == 0) // Um Jogador
             {
                 WordEntry.IsVisible = false;
                 CategoryPicker.IsEnabled = true;
+                DifficultyLayout.IsVisible = true;
+            }
+            else
+            {
+                // Se nenhum modo de jogo estiver selecionado
+                WordEntry.IsVisible = false;
+                DifficultyLayout.IsVisible = false;
             }
         }
+
 
         private void OnStartGameClicked(object sender, EventArgs e)
         {
@@ -147,11 +167,18 @@ namespace JogodaForca
                     return;
                 }
 
-                InitializeGame();
+                if (DifficultyPicker.SelectedIndex == -1)
+                {
+                    MessageLabel.Text = "Por favor, selecione um nível de dificuldade.";
+                    return;
+                }
 
                 StartGameButton.IsVisible = false;
                 CategoryPicker.IsVisible = false;
+                DifficultyLayout.IsVisible = false;
                 GameModePicker.IsEnabled = false; // Desabilita apenas durante o jogo
+
+                InitializeGame();
             }
         }
 
@@ -159,11 +186,31 @@ namespace JogodaForca
         {
             try
             {
+                if (CategoryPicker.SelectedItem == null)
+                {
+                    MessageLabel.Text = "Por favor, escolha uma categoria.";
+                    return;
+                }
                 string selectedCategory = CategoryPicker.SelectedItem.ToString();
 
                 if (GameModePicker.SelectedIndex == 0) // Um Jogador
                 {
-                    var wordsList = dbHelper.GetWordsByCategory(selectedCategory);
+                    if (DifficultyPicker.SelectedItem == null)
+                    {
+                        MessageLabel.Text = "Por favor, selecione um nível de dificuldade.";
+                        return;
+                    }
+                    string selectedDifficulty = DifficultyPicker.SelectedItem.ToString();
+
+                    var wordsList = dbHelper.GetWordsByCategoryAndDifficulty(selectedCategory, selectedDifficulty);
+
+                    if (wordsList.Count == 0)
+                    {
+                        MessageLabel.Text = "Não há palavras disponíveis para a categoria e dificuldade selecionadas.";
+                        ResetInterface();
+                        return;
+                    }
+
                     Random random = new Random();
                     wordToGuess = wordsList[random.Next(wordsList.Count)].ToUpper();
                 }
@@ -195,13 +242,16 @@ namespace JogodaForca
                 // Torna o layout das letras visível
                 LettersLayout.IsVisible = true;
 
+                // Torna o botão de dica visível (apenas no modo um jogador)
+                UseHintButton.IsVisible = GameModePicker.SelectedIndex == 0;
+
                 // Atualiza a pontuação
                 ScoreLabel.Text = GetScoreText();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao inicializar o jogo: {ex.Message}");
-                MessageLabel.Text = "Erro ao iniciar o jogo.";
+                MessageLabel.Text = $"Erro ao iniciar o jogo: {ex.Message}";
             }
         }
 
@@ -234,7 +284,7 @@ namespace JogodaForca
 
                     if (!guessedWord.Contains('_'))
                     {
-                        MessageLabel.Text = $"Jogador {guessingPlayer}: Parabéns, você acertou a palavra!";
+                        MessageLabel.Text = $"Parabéns, você acertou a palavra!";
                         HangmanDrawing.Text = trophyArt;
                         DisableAllLetterButtons();
                         UpdateScore(guessingPlayer, true);
@@ -252,7 +302,7 @@ namespace JogodaForca
 
                         if (attemptsLeft <= 0)
                         {
-                            MessageLabel.Text = $"Jogador {guessingPlayer}: Você errou! A palavra era {wordToGuess}.";
+                            MessageLabel.Text = $"Você errou! A palavra era {wordToGuess}.";
                             HangmanDrawing.Text = gameOverArt;
                             DisableAllLetterButtons();
                             UpdateScore(guessingPlayer, false);
@@ -313,6 +363,7 @@ namespace JogodaForca
             GameModePicker.IsEnabled = false;
             WordEntry.IsVisible = false;
             LettersLayout.IsVisible = false;
+            UseHintButton.IsVisible = false;
             NextRoundButton.IsVisible = true;
             RestartGameButton.IsVisible = true; // Exibe o botão "Reiniciar Jogo"
         }
@@ -347,19 +398,29 @@ namespace JogodaForca
 
         private void UpdateScore(int playerNumber, bool correct)
         {
-            if (playerNumber == 1)
+            if (GameModePicker.SelectedIndex == 1) // Dois Jogadores
+            {
+                if (playerNumber == 1)
+                {
+                    if (correct)
+                        player1Score++;
+                    else
+                        player1Errors++;
+                }
+                else
+                {
+                    if (correct)
+                        player2Score++;
+                    else
+                        player2Errors++;
+                }
+            }
+            else // Um Jogador
             {
                 if (correct)
                     player1Score++;
                 else
                     player1Errors++;
-            }
-            else
-            {
-                if (correct)
-                    player2Score++;
-                else
-                    player2Errors++;
             }
 
             ScoreLabel.Text = GetScoreText();
@@ -367,7 +428,14 @@ namespace JogodaForca
 
         private string GetScoreText()
         {
-            return $"Jogador 1 - Acertos: {player1Score}, Erros: {player1Errors}\nJogador 2 - Acertos: {player2Score}, Erros: {player2Errors}";
+            if (GameModePicker.SelectedIndex == 1) // Dois Jogadores
+            {
+                return $"Jogador 1 - Acertos: {player1Score}, Erros: {player1Errors}\nJogador 2 - Acertos: {player2Score}, Erros: {player2Errors}";
+            }
+            else
+            {
+                return $"Acertos: {player1Score}, Erros: {player1Errors}";
+            }
         }
 
         private void OnResetScoresButtonClicked(object sender, EventArgs e)
@@ -379,6 +447,7 @@ namespace JogodaForca
             ScoreLabel.Text = GetScoreText();
             MessageLabel.Text = "Pontuação resetada.";
         }
+
         private void OnRestartGameButtonClicked(object sender, EventArgs e)
         {
             // Resetar as pontuações
@@ -395,5 +464,58 @@ namespace JogodaForca
             ResetInterface();
         }
 
+        private void OnUseHintButtonClicked(object sender, EventArgs e)
+        {
+            if (attemptsLeft > 0)
+            {
+                var undiscoveredIndices = new List<int>();
+                for (int i = 0; i < guessedWord.Length; i++)
+                {
+                    if (guessedWord[i] == '_')
+                    {
+                        undiscoveredIndices.Add(i);
+                    }
+                }
+
+                if (undiscoveredIndices.Count > 0)
+                {
+                    Random random = new Random();
+                    int index = undiscoveredIndices[random.Next(undiscoveredIndices.Count)];
+                    char hintLetter = wordToGuess[index];
+
+                    for (int i = 0; i < wordToGuess.Length; i++)
+                    {
+                        if (wordToGuess[i] == hintLetter)
+                        {
+                            guessedWord[i] = hintLetter;
+                        }
+                    }
+
+                    attemptsLeft--; // Reduz o número de tentativas
+
+                    UpdateWordDisplay();
+                    UpdateWrongGuesses();
+                    UpdateHangmanDrawing();
+
+                    // Verifica se o jogador ganhou após a dica
+                    if (!guessedWord.Contains('_'))
+                    {
+                        MessageLabel.Text = $"Parabéns, você acertou a palavra!";
+                        HangmanDrawing.Text = trophyArt;
+                        DisableAllLetterButtons();
+                        UpdateScore(guessingPlayer, true);
+                        ShowNextRoundButton();
+                    }
+                }
+                else
+                {
+                    MessageLabel.Text = "Todas as letras já foram descobertas.";
+                }
+            }
+            else
+            {
+                MessageLabel.Text = "Você não tem mais tentativas para usar dicas.";
+            }
+        }
     }
 }
