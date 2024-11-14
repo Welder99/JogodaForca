@@ -32,7 +32,7 @@
             </StackLayout>
 
             <!-- Picker para Seleção da Categoria -->
-            <Picker x:Name="CategoryPicker" Title="Escolha uma categoria" HorizontalOptions="Center" TextColor="#333" TitleColor="#333"/>
+            <Picker x:Name="CategoryPicker" Title="Escolha uma categoria" HorizontalOptions="Center"  TextColor="#333" TitleColor="Black"/>
 
             <!-- Entrada para a Palavra no modo de dois jogadores -->
             <Entry x:Name="WordEntry" Placeholder="Jogador 1: Digite a palavra" IsVisible="False" TextColor="#333" PlaceholderColor="#333" />

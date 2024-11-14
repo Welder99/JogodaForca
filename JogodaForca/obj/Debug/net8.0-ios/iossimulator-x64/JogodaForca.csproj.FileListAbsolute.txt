@@ -1,3 +1,5 @@
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libmonosgen-2.0.dylib
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet-nativeaot.a
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\JogodaForca.runtimeconfig.json
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\JogodaForca.dll
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\JogodaForca.pdb
@@ -255,13 +257,11 @@ C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimu
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libmono-component-marshal-ilgen-stub-static.a
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libmono-component-marshal-ilgen.dylib
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libmonosgen-2.0.a
-C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libmonosgen-2.0.dylib
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\Microsoft.iOS.registrar.a
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libextension-dotnet.a
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet-debug.a
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet-debug.dylib
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet-nativeaot-debug.a
-C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet-nativeaot.a
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet.a
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\bin\Debug\net8.0-ios\iossimulator-x64\libxamarin-dotnet.dylib
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\build-signature\signature
@@ -270,9 +270,6 @@ C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimu
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\mauisplash.inputs
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\sp\MauiInfo.plist
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\sp\MauiSplash.storyboard
-C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\sp\splash_58C11A0A2CDF3C43117FC29EECA319E6FBFEFE150B9123BB20E86A467F499449.png
-C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\sp\splash_58C11A0A2CDF3C43117FC29EECA319E6FBFEFE150B9123BB20E86A467F499449@2x.png
-C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\sp\splash_58C11A0A2CDF3C43117FC29EECA319E6FBFEFE150B9123BB20E86A467F499449@3x.png
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\mauisplash.stamp
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appiconItunesArtwork.png
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\r\Assets.xcassets\appicon.appiconset\appicon83.5x83.5@2x.png
@@ -318,3 +315,6 @@ C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimu
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\JogodaForca.pdb
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\JogodaForca.genruntimeconfig.cache
 C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\ref\JogodaForca.dll
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\sp\splash_29C3E36152742FB5FDEA9CA5A96715F8BB517E1AE3FFD9AE8DCEB995499FA15C.png
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\sp\splash_29C3E36152742FB5FDEA9CA5A96715F8BB517E1AE3FFD9AE8DCEB995499FA15C@2x.png
+C:\Users\welde\source\repos\JogodaForca\JogodaForca\obj\Debug\net8.0-ios\iossimulator-x64\resizetizer\sp\splash_29C3E36152742FB5FDEA9CA5A96715F8BB517E1AE3FFD9AE8DCEB995499FA15C@3x.png

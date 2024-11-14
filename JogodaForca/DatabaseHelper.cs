@@ -120,14 +120,58 @@ namespace JogodaForca
             };
 
             var words = new Dictionary<string, List<string>>
-            {
-                { "Animal", new List<string> { "GATO", "CÃO", "ELEFANTE", "CANGURU", "HIPOPOTAMO", "TARTARUGA", "RINOCERONTE", "GIRAFA", "GORILA", "ORNITORRINCO", "CROCODILO", "ESQUILO" } },
-                { "Cor", new List<string> { "VERMELHO", "AZUL", "AMARELO", "VERDE", "ROSA", "LARANJA", "ROXO", "MARROM", "PRETO", "BRANCO" } },
-                { "Carro", new List<string> { "FIAT", "FERRARI", "PORSCHE", "TOYOTA", "HONDA", "MERCEDES", "BMW", "CHEVROLET", "VOLKSWAGEN", "AUDI", "LAMBORGHINI" } },
-                { "Linguagem de Programação", new List<string> { "C", "JAVA", "PYTHON", "JAVASCRIPT", "RUBY", "KOTLIN", "SWIFT", "GO", "RUST", "PHP" } },
-                { "Hardware", new List<string> { "CPU", "RAM", "PROCESSADOR", "MEMORIA", "MONITOR", "TECLADO", "MOUSE", "PLACA", "FONTE", "SSD", "HD", "COOLER" } },
-                { "Banco de Dados", new List<string> { "MYSQL", "SQLITE", "POSTGRESQL", "MONGODB", "ORACLE", "FIREBASE", "SQLSERVER", "CASSANDRA", "REDIS", "COUCHDB" } }
-            };
+{
+    { "Animal", new List<string> {
+        "GATO", "CÃO", "ELEFANTE", "CANGURU", "HIPOPOTAMO", "TARTARUGA",
+        "RINOCERONTE", "GIRAFA", "GORILA", "ORNITORRINCO", "CROCODILO",
+        "ESQUILO", "ABELHA", "PAPAGAIO", "BALEIA", "CAMELO", "LEOPARDO",
+        "PANTERA", "TIGRE", "URSO", "LOBISOMEM", "PEIXE", "ZEBRA", "PINGUIM",
+        "FOCA", "AVESTRUZ", "BORBOLETA", "CORUJA", "DRAGAO", "GAIVOTA",
+        "HIPOGRIFFO", "IGUANA", "JACARE", "KOALA", "LEBRE", "MACACO", "NARVAL",
+        "ORNITORRINCO", "PATO", "QUATI", "RAPOSA", "SALAMANDRA", "TOURO", "URUBU"
+    }},
+    { "Cor", new List<string> {
+        "VERMELHO", "AZUL", "AMARELO", "VERDE", "ROSA", "LARANJA",
+        "ROXO", "MARROM", "PRETO", "BRANCO", "CINZA", "BEGE",
+        "VIOLETA", "SALMÃO", "TURQUESA", "LILÁS", "MAGENTA",
+        "AMETISTA", "BRONZE", "DOURADO", "PRATA", "ESMERALDA",
+        "JADE", "MALVA", "BORDÔ", "ESCARLATE", "ACINZENTADO", "CREME",
+        "LAVANDA", "NEON", "PASTEL", "MOSTARDA", "SÉPIA", "PETRÓLEO"
+    }},
+    { "Carro", new List<string> {
+        "FIAT", "FERRARI", "PORSCHE", "TOYOTA", "HONDA", "MERCEDES",
+        "BMW", "CHEVROLET", "VOLKSWAGEN", "AUDI", "LAMBORGHINI",
+        "MASERATI", "JAGUAR", "BUGATTI", "ASTONMARTIN", "NISSAN",
+        "SUZUKI", "PEUGEOT", "CITROEN", "HYUNDAI", "TESLA", "LEXUS",
+        "CHRYSLER", "DODGE", "SUBARU", "KIA", "ROLLSROYCE", "BENTLEY",
+        "ALFAROMEO", "CADILLAC", "VOLVO", "RENAULT", "MCLAREN",
+        "LUXGEN", "TROLLER", "CHANGAN", "MAHINDRA", "ISUZU"
+    }},
+    { "Linguagem de Programação", new List<string> {
+        "C", "JAVA", "PYTHON", "JAVASCRIPT", "RUBY", "KOTLIN",
+        "SWIFT", "GO", "RUST", "PHP", "HTML", "CSS", "TYPESCRIPT",
+        "DART", "PERL", "LUA", "HASKELL", "SCALA", "R", "OBJECTIVEC",
+        "COBOL", "FORTRAN", "ELIXIR", "CLOJURE", "ERLANG", "PASCAL",
+        "F#", "VB", "ASSEMBLY", "MATLAB", "APL", "JULIA", "ADA"
+    }},
+    { "Hardware", new List<string> {
+        "CPU", "RAM", "PROCESSADOR", "MEMORIA", "MONITOR", "TECLADO",
+        "MOUSE", "PLACA", "FONTE", "SSD", "HD", "COOLER", "GABINETE",
+        "CABO", "SPEAKER", "HEADSET", "MICROFONE", "PLACAVIDEO",
+        "FONTEALIMENTACAO", "MODULO", "MOTHERBOARD", "AMPLIFICADOR",
+        "FAN", "DISQUETE", "NOBREAK", "MODULADOR", "TRANSFORMADOR",
+        "DISSIPADOR", "MEMORIAFLASH", "MEMORIARAM", "MEMORIAROM", "BLUETOOTH"
+    }},
+    { "Banco de Dados", new List<string> {
+        "MYSQL", "SQLITE", "POSTGRESQL", "MONGODB", "ORACLE",
+        "FIREBASE", "SQLSERVER", "CASSANDRA", "REDIS", "COUCHDB",
+        "DYNAMODB", "INFLUXDB", "MARIA", "MARIADB", "COCKROACHDB",
+        "BIGTABLE", "NEO4J", "ELASTICSEARCH", "HBASE", "CLICKHOUSE",
+        "FOUNDATIONDB", "SCYLLADB", "TIDB", "POLARDB", "IMDB", "SYBASE",
+        "TERADATA", "GREENPLUM", "TIGERGRAPH", "SAP", "CUBRID", "EXASOL"
+    }}
+};
+
 
             using (var connection = new SqliteConnection($"Data Source={dbPath}"))
             {

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Nm5qXj8c6C4=",
+  "dgSpecHash": "mbWbsCX5hdk=",
   "success": true,
   "projectFilePath": "C:\\Users\\welde\\source\\repos\\JogodaForca\\JogodaForca\\JogodaForca.csproj",
   "expectedPackageFiles": [
@@ -28,7 +28,7 @@
     "C:\\Users\\welde\\.nuget\\packages\\microsoft.maui.graphics\\8.0.82\\microsoft.maui.graphics.8.0.82.nupkg.sha512",
     "C:\\Users\\welde\\.nuget\\packages\\microsoft.maui.graphics.win2d.winui.desktop\\8.0.82\\microsoft.maui.graphics.win2d.winui.desktop.8.0.82.nupkg.sha512",
     "C:\\Users\\welde\\.nuget\\packages\\microsoft.maui.resizetizer\\8.0.82\\microsoft.maui.resizetizer.8.0.82.nupkg.sha512",
-    "C:\\Users\\welde\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.10\\microsoft.net.illink.tasks.8.0.10.nupkg.sha512",
+    "C:\\Users\\welde\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.11\\microsoft.net.illink.tasks.8.0.11.nupkg.sha512",
     "C:\\Users\\welde\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.756\\microsoft.windows.sdk.buildtools.10.0.22621.756.nupkg.sha512",
     "C:\\Users\\welde\\.nuget\\packages\\microsoft.windowsappsdk\\1.5.240627000\\microsoft.windowsappsdk.1.5.240627000.nupkg.sha512",
     "C:\\Users\\welde\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
@@ -125,7 +125,7 @@
     "C:\\Users\\welde\\.nuget\\packages\\xamarin.kotlin.stdlib.jdk8\\1.9.0.1\\xamarin.kotlin.stdlib.jdk8.1.9.0.1.nupkg.sha512",
     "C:\\Users\\welde\\.nuget\\packages\\xamarin.kotlinx.coroutines.android\\1.7.2.1\\xamarin.kotlinx.coroutines.android.1.7.2.1.nupkg.sha512",
     "C:\\Users\\welde\\.nuget\\packages\\xamarin.kotlinx.coroutines.core.jvm\\1.7.2.1\\xamarin.kotlinx.coroutines.core.jvm.1.7.2.1.nupkg.sha512",
-    "C:\\Users\\welde\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.44\\microsoft.windows.sdk.net.ref.10.0.19041.44.nupkg.sha512"
+    "C:\\Users\\welde\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.53\\microsoft.windows.sdk.net.ref.10.0.19041.53.nupkg.sha512"
   ],
   "logs": []
 }
