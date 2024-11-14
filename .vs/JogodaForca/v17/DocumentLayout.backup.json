@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\welde\\source\\repos\\JogodaForca\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{109C1C77-A194-47F6-B538-C1C6E45A240C}|JogodaForca\\JogodaForca.csproj|c:\\users\\welde\\source\\repos\\jogodaforca\\jogodaforca\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{109C1C77-A194-47F6-B538-C1C6E45A240C}|JogodaForca\\JogodaForca.csproj|solutionrelative:jogodaforca\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{109C1C77-A194-47F6-B538-C1C6E45A240C}|JogodaForca\\JogodaForca.csproj|c:\\users\\welde\\source\\repos\\jogodaforca\\jogodaforca\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{109C1C77-A194-47F6-B538-C1C6E45A240C}|JogodaForca\\JogodaForca.csproj|solutionrelative:jogodaforca\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{109C1C77-A194-47F6-B538-C1C6E45A240C}|JogodaForca\\JogodaForca.csproj|c:\\users\\welde\\source\\repos\\jogodaforca\\jogodaforca\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{109C1C77-A194-47F6-B538-C1C6E45A240C}|JogodaForca\\JogodaForca.csproj|solutionrelative:jogodaforca\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,41 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\welde\\source\\repos\\JogodaForca\\JogodaForca\\MainPage.xaml.cs",
-              "RelativeDocumentMoniker": "JogodaForca\\MainPage.xaml.cs",
-              "ToolTip": "C:\\Users\\welde\\source\\repos\\JogodaForca\\JogodaForca\\MainPage.xaml.cs",
-              "RelativeToolTip": "JogodaForca\\MainPage.xaml.cs",
-              "ViewState": "AgIAAI8AAAAAAAAAAIAwwGUBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-31T23:24:14.528Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "DatabaseHelper.cs",
               "DocumentMoniker": "C:\\Users\\welde\\source\\repos\\JogodaForca\\JogodaForca\\DatabaseHelper.cs",
               "RelativeDocumentMoniker": "JogodaForca\\DatabaseHelper.cs",
               "ToolTip": "C:\\Users\\welde\\source\\repos\\JogodaForca\\JogodaForca\\DatabaseHelper.cs",
               "RelativeToolTip": "JogodaForca\\DatabaseHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAgwK0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T02:56:47.532Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "C:\\Users\\welde\\source\\repos\\JogodaForca\\JogodaForca\\MainPage.xaml",
-              "RelativeDocumentMoniker": "JogodaForca\\MainPage.xaml",
-              "ToolTip": "C:\\Users\\welde\\source\\repos\\JogodaForca\\JogodaForca\\MainPage.xaml",
-              "RelativeToolTip": "JogodaForca\\MainPage.xaml",
-              "ViewState": "AgIAACwAAAAAAAAAAAAqwEgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-10-31T23:24:04.69Z",
+              "WhenOpened": "2024-11-14T04:16:43.316Z",
               "EditorCaption": ""
             }
           ]
