@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JogodaForca.MainPage"
+             BackgroundColor="#E0E0E0">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15">
+            <Label Text="Jogo da Forca" FontSize="32" HorizontalOptions="Center" TextColor="#333" FontAttributes="Bold" />
+
+            <!-- Seleção do Modo de Jogo -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label Text="Modo de Jogo: " VerticalOptions="Center" TextColor="#333"/>
+                <Picker x:Name="GameModePicker" WidthRequest="150" TextColor="#333" TitleColor="#333">
+                    <Picker.Items>
+                        <x:String>Um Jogador</x:String>
+                        <x:String>Dois Jogadores</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <!-- Seleção do Nível de Dificuldade (somente para um jogador) -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" IsVisible="False" x:Name="DifficultyLayout">
+                <Label Text="Dificuldade: " VerticalOptions="Center" TextColor="#333"/>
+                <Picker x:Name="DifficultyPicker" WidthRequest="150" TextColor="#333" TitleColor="#333">
+                    <Picker.Items>
+                        <x:String>Fácil</x:String>
+                        <x:String>Médio</x:String>
+                        <x:String>Difícil</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <!-- Picker para Seleção da Categoria -->
+            <Picker x:Name="CategoryPicker" Title="Escolha uma categoria" HorizontalOptions="Center"  TextColor="#333" TitleColor="Black"/>
+
+            <!-- Entrada para a Palavra no modo de dois jogadores -->
+            <Entry x:Name="WordEntry" Placeholder="Jogador 1: Digite a palavra" IsVisible="False" TextColor="#333" PlaceholderColor="#333" />
+
+            <Button x:Name="StartGameButton" Text="Iniciar Jogo" Clicked="OnStartGameClicked" BackgroundColor="#333" TextColor="White" />
+
+            <!-- Exibição do desenho da Forca -->
+            <Label x:Name="HangmanDrawing" FontSize="24" HorizontalOptions="Center" TextColor="#333" FontFamily="Courier New" />
+
+            <!-- Exibição da Palavra a ser Adivinhada -->
+            <Label x:Name="WordLabel" FontSize="30" HorizontalOptions="Center" TextColor="#333" FontAttributes="Bold" />
+            <Label x:Name="WrongGuessesLabel" FontSize="18" TextColor="Red" HorizontalOptions="Center" />
+
+            <!-- Botões de Letras -->
+            <FlexLayout x:Name="LettersLayout" Wrap="Wrap" JustifyContent="Center" IsVisible="False"/>
+
+            <!-- Mensagem de Feedback -->
+            <Label x:Name="MessageLabel" FontSize="18" TextColor="Green" HorizontalOptions="Center" />
+
+            <!-- Exibição da Pontuação -->
+            <Label x:Name="ScoreLabel" FontSize="18" TextColor="#333" HorizontalOptions="Center" />
+
+            <!-- Botão para Usar Dica -->
+            <Button x:Name="UseHintButton" Text="Usar Dica" Clicked="OnUseHintButtonClicked" BackgroundColor="#FFA500" TextColor="White" IsVisible="False"/>
+
+            <!-- Botão para Próxima Rodada -->
+            <Button x:Name="NextRoundButton" Text="Próxima Rodada" Clicked="OnRestartButtonClicked" BackgroundColor="#333" TextColor="White" IsVisible="False"/>
+
+            <!-- Botão para Resetar Pontuação -->
+            <Button x:Name="ResetScoresButton" Text="Resetar Pontuação" Clicked="OnResetScoresButtonClicked" BackgroundColor="#333" TextColor="White" IsVisible="True"/>
+
+            <!-- Botão para Reiniciar o Jogo -->
+            <Button x:Name="RestartGameButton" Text="Reiniciar Jogo" Clicked="OnRestartGameButtonClicked" BackgroundColor="#333" TextColor="White" IsVisible="False"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

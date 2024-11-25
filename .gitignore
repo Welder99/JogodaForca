@@ -1,0 +1,7 @@
+# Arquivos e pastas para ignorar
+.vs/
+obj/
+*.user
+*.vsidx
+*.cache
+*.xml
